@@ -184,12 +184,12 @@ const LAYOUT_KUWAIT_ALNOOR: FieldLayout = {
   // Employment
   expPeriod: { x: 20, y: 231, color: GREEN_HEX, font: 'helvetica', size: 12 },
   expPosition: { x: 31.5, y: 231, color: GREEN_HEX, font: 'helvetica', size: 11 },
-  expCountry: { x: 58, y: 231, color: GREEN_HEX, font: 'helvetica', size: 14 },
+  expCountry: { x: 56.5, y: 231, color: GREEN_HEX, font: 'helvetica', size: 13.25 },
   
   // Second Employment
   expPeriod2: { x: 20, y: 240, color: GREEN_HEX, font: 'helvetica', size: 12 },
   expPosition2: { x: 31.5, y: 240, color: GREEN_HEX, font: 'helvetica', size: 11 },
-  expCountry2: { x: 58, y: 240, color: GREEN_HEX, font: 'helvetica', size: 14 },
+  expCountry2: { x: 56.5, y: 240, color: GREEN_HEX, font: 'helvetica', size: 13.25 },
 
   // Skills
   skillsStart: { x: 18, y: 263, color: RED_HEX, font: 'helvetica', size: 16 },
@@ -293,9 +293,9 @@ const LAYOUT_JORDAN_EWAN: FieldLayout = {
   height: { x: 50, y: 177, font: 'helvetica' }, 
   weight: { x: 50, y: 170, font: 'helvetica' }, 
   placeOfIssue: { x: 0, y: 0 }, 
-  passportNumber: { x: 144, y: 104.5, font: 'helvetica' },
-  issueDate: { x: 144, y: 112, font: 'helvetica' },
-  expiryDate: { x: 144, y: 127, font: 'helvetica' },
+  passportNumber: { x: 142.5, y: 104.5, font: 'helvetica' },
+  issueDate: { x: 142.5, y: 112, font: 'helvetica' },
+  expiryDate: { x: 142.5, y: 127, font: 'helvetica' },
   expCountry: { x: 55, y: 238, font: 'helvetica' },
   expPeriod: { x: 15, y: 238, font: 'helvetica' },
   expPosition: { x: 27, y: 238, font: 'helvetica' },
@@ -309,7 +309,13 @@ const LAYOUT_JORDAN_EWAN: FieldLayout = {
   photoPassport: { x: 12, y: 40, w: 183, h: 220 },
 
   skillsStart: { x: 1320, y: 175 },
-  languagesStart: { x: 20, y: 175 }
+  languagesStart: { x: 20, y: 175 },
+
+  // CONTACT INFO - HIDDEN FOR EWAN (AS REQUESTED)
+  contactName: { x: 0, y: 0 },
+  contactPhone: { x: 0, y: 0 },
+  contactRelationship: { x: 0, y: 0 },
+  contactAddress: { x: 0, y: 0 }
 };
 
 // --- JORDAN: OPTION OFFICE ---
@@ -327,9 +333,9 @@ const LAYOUT_JORDAN_OPTION: FieldLayout = {
   
   placeOfIssue: { x: 0, y: 0 }, 
   
-  passportNumber: { x: 144, y: 104.5, font: 'helvetica' },
-  issueDate: { x: 144, y: 112, font: 'helvetica' },
-  expiryDate: { x: 144, y: 127, font: 'helvetica' },
+  passportNumber: { x: 142.5, y: 104.5, font: 'helvetica' },
+  issueDate: { x: 142.5, y: 112, font: 'helvetica' },
+  expiryDate: { x: 142.5, y: 127, font: 'helvetica' },
   
   expCountry: { x: 55, y: 236, font: 'helvetica' },
   expPeriod: { x: 16, y: 236, font: 'helvetica' },
@@ -337,10 +343,16 @@ const LAYOUT_JORDAN_OPTION: FieldLayout = {
 
   photoFace: { x: 28.5, y: 45, w: 29, h: 34.5 },
   photoFull: { x: 132, y: 135, w: 38, h: 130 },
- photoPassport: { x: 12, y: 40, w: 183, h: 220 },
+  photoPassport: { x: 12, y: 40, w: 183, h: 220 },
 
   skillsStart: { x: 1320, y: 175 }, 
-  languagesStart: { x: 20, y: 175 }
+  languagesStart: { x: 20, y: 175 },
+
+  // CONTACT INFO - HIDDEN FOR OPTION (AS REQUESTED)
+  contactName: { x: 0, y: 0 },
+  contactPhone: { x: 0, y: 0 },
+  contactRelationship: { x: 0, y: 0 },
+  contactAddress: { x: 0, y: 0 }
 };
 
 // --- JORDAN: INJAZ OFFICE ---
@@ -356,9 +368,9 @@ const LAYOUT_JORDAN_INJAZ: FieldLayout = {
   height: { x: 58, y: 162, font: 'helvetica' },
   weight: { x: 58, y: 148, font: 'helvetica' },
   placeOfIssue: { x: 0, y: 0 }, 
-  passportNumber: { x: 147, y: 98, font: 'helvetica' },
-  issueDate: { x: 147, y: 105.25, font: 'helvetica' },
-  expiryDate: { x: 147, y: 120.25, font: 'helvetica' },
+  passportNumber: { x: 146.5, y: 98, font: 'helvetica' },
+  issueDate: { x: 146.5, y: 105.25, font: 'helvetica' },
+  expiryDate: { x: 146.5, y: 119.5, font: 'helvetica' },
   expCountry: { x: 62, y: 229, font: 'helvetica' },
   expPeriod: { x: 22, y: 229, font: 'helvetica' },
   expPosition: { x: 34, y: 229, font: 'helvetica' },
@@ -369,9 +381,15 @@ const LAYOUT_JORDAN_INJAZ: FieldLayout = {
 
   photoFace: { x: 20, y: 33.5, w: 27, h: 34 },
   photoFull: { x: 136, y: 131.5, w: 44, h: 135 },
- photoPassport: { x: 12, y: 40, w: 183, h: 220 },
+  photoPassport: { x: 12, y: 40, w: 183, h: 220 },
   skillsStart: { x: 1320, y: 175 },
-  languagesStart: { x: 20, y: 175 }
+  languagesStart: { x: 20, y: 175 },
+
+  // Contact Info - HIDDEN FOR INJAZ (as per your comment)
+  contactName: { x: 0, y: 0 },
+  contactPhone: { x: 0, y: 0 },
+  contactRelationship: { x: 0, y: 0 },
+  contactAddress: { x: 0, y: 0 }
 };
 
 const getLayout = (country: string, office: string): FieldLayout => {
@@ -408,7 +426,7 @@ export const generateCountryPDF = async (
   country: 'kuwait' | 'saudi' | 'jordan',
   office: string
 ) => {
-  console.log("GENERATOR V16 LOADED: " + country + " - " + office);
+  console.log("GENERATOR V17 LOADED: " + country + " - " + office + " (EWAN & OPTION contact removed)");
 
   if (!window.jspdf) {
     alert("Error: jsPDF library not loaded. Please refresh.");
@@ -432,7 +450,7 @@ export const generateCountryPDF = async (
   // Helper to draw text
   const draw = (text: string | undefined, coord: Coord | undefined) => {
     if (!text || !coord) return;
-    if (coord.x === 0 && coord.y === 0) return; // Explicit hide
+    if (coord.x === 0 && coord.y === 0) return; // Explicit hide (for contact info)
 
     doc.setTextColor(...(coord.color || [0, 0, 0]));
     doc.setFontSize(coord.size || 11);
@@ -530,10 +548,12 @@ export const generateCountryPDF = async (
     }
   }
 
-  // Contact
+  // Contact - ONLY for offices that should show it
   if ('contactPerson' in data) {
      const cData = data as KuwaitFormData | SaudiFormData | AllFormData;
-     if (layout.contactName) {
+     
+     // Only draw contact info if coordinates are not hidden (x:0, y:0)
+     if (layout.contactName && (layout.contactName.x !== 0 || layout.contactName.y !== 0)) {
          draw(cData.contactPerson, layout.contactName);
          draw(cData.contactPhone, layout.contactPhone);
          if ('relationship' in cData) {
@@ -541,10 +561,8 @@ export const generateCountryPDF = async (
              draw(sData.relationship, layout.contactRelationship);
              draw(sData.address, layout.contactAddress);
          }
-     } else {
-         draw(cData.contactPerson, {x:60, y:230, font:'helvetica'}); 
-         draw(cData.contactPhone, {x:150, y:230, font:'helvetica'}); 
      }
+     // No fallback drawing for offices with hidden contact
   }
 
   // Photos (Page 1)
@@ -603,7 +621,7 @@ export const generateCountryPDF = async (
   if (country === 'saudi') {
      const sData = data as SaudiFormData;
      if (sData.skills.cooking) {
-         drawCheckmark(doc, 70, 168.5, 2.5, [0,0,0]);
+         drawCheckmark(doc, 70, 166.5, 2.5, [0,0,0]);
      }
      
      doc.setTextColor(0,0,0);
@@ -622,7 +640,7 @@ export const generateCountryPDF = async (
      const jData = data as JordanFormData;
      
      if (office.toLowerCase() === 'injaz') {
-        if (jData.skills.cooking) drawCheckmark(doc, 65.75, 267.5, 2.5, [0,0,0]);
+        if (jData.skills.cooking) drawCheckmark(doc, 65.75, 265.5, 2.5, [0,0,0]);
         
         doc.setTextColor(0,0,0);
         doc.setFont('helvetica', 'bold');
