@@ -114,15 +114,23 @@ const adjustFullNameLayout = (data: BaseFormData, layout: FieldLayout, country: 
   const fullNameLayout = { ...layout.fullName };
   
   // For Ewan, Option, Injaz, and Alnoor - Use Alnoor style when characters >= 24
-  // (Same adjustment for all these offices)
   if (
     (country === 'jordan' && ['EWAN', 'OPTION', 'INJAZ'].includes(officeUpper)) ||
     (country === 'kuwait' && officeUpper === 'ALNOOR')
   ) {
     if (charCount >= 24) {
-      // Apply Alnoor-style adjustments
+      // Apply font size reduction for long names
       fullNameLayout.size = (fullNameLayout.size || 16.5) - 2; // Reduce font size by 2
-      fullNameLayout.x = fullNameLayout.x - 5; // Shift left by 5mm
+      
+      // FIX: For Ewan and Option, DO NOT shift left - keep original x position
+      if (country === 'jordan' && ['EWAN', 'OPTION'].includes(officeUpper)) {
+        // Keep original x position (x=64 for Ewan, x=60 for Option)
+        // No adjustment needed
+      } else {
+        // For Injaz and Alnoor, shift left by 5mm as before
+        fullNameLayout.x = fullNameLayout.x - 5; // Shift left by 5mm
+      }
+      
       // Keep original font and color
       fullNameLayout.font = fullNameLayout.font || 'helvetica';
       fullNameLayout.color = fullNameLayout.color || [0, 0, 0];
