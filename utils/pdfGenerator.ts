@@ -113,17 +113,22 @@ const adjustFullNameLayout = (data: BaseFormData, layout: FieldLayout, country: 
   // Deep clone the fullName layout to avoid mutating the original
   const fullNameLayout = { ...layout.fullName };
   
-  // For Ewan, Option, Injaz, and Alnoor
+  // For Ewan, Option, Injaz, and Alnoor - Use Alnoor style when characters >= 24
+  // (Same adjustment for all these offices)
   if (
     (country === 'jordan' && ['EWAN', 'OPTION', 'INJAZ'].includes(officeUpper)) ||
     (country === 'kuwait' && officeUpper === 'ALNOOR')
   ) {
     if (charCount >= 24) {
-      fullNameLayout.size = (fullNameLayout.size || 11) - 2;
-      fullNameLayout.x = fullNameLayout.x - 5;
+      // Apply Alnoor-style adjustments
+      fullNameLayout.size = (fullNameLayout.size || 16.5) - 2; // Reduce font size by 2
+      fullNameLayout.x = fullNameLayout.x - 5; // Shift left by 5mm
+      // Keep original font and color
+      fullNameLayout.font = fullNameLayout.font || 'helvetica';
+      fullNameLayout.color = fullNameLayout.color || [0, 0, 0];
     }
   }
-  // For Aldhahran
+  // For Aldhahran - special case (19 characters threshold)
   else if (country === 'saudi' && officeUpper === 'ALDHAHRAN') {
     if (charCount >= 19) {
       // Update to specific coordinates and size
