@@ -84,6 +84,43 @@ interface FieldLayout {
 // HELPER FUNCTIONS
 // ==========================================
 
+// ...existing code...
+interface Coord {
+  x: number
+  y: number
+  // add this:
+  _originalX?: number
+}
+// ...existing code...
+
+
+// ...existing code...
+interface Coord {
+  x: number
+  y: number
+  // add this:
+  _originalY?: number
+}
+// ...existing code...
+
+// ...existing code...
+interface Coord {
+  x: number
+  y: number
+  // add this:
+  _originalSize?: number
+}
+// ...existing code...
+
+// ...existing code...
+interface Coord {
+  x: number
+  y: number
+  // add this:
+  _originalFont?: string
+}
+// ...existing code...
+
 const formatDate = (dateStr: string): string => {
   if (!dateStr) return '';
   const date = new Date(dateStr);
@@ -104,56 +141,65 @@ const formatDateNumeric = (dateStr: string): string => {
 };
 
 // Helper to adjust fullName layout based on character count
-const adjustFullNameLayout = (data: BaseFormData, layout: FieldLayout, country: string, office: string): void => {
+const adjustFullNameLayout = (
+  data: BaseFormData,
+  layout: FieldLayout,
+  country: string,
+  office: string
+): void => {
   if (!layout.fullName || !data.fullName) return;
-  
+
   const charCount = data.fullName.length;
   const officeUpper = office.toUpperCase();
-  
-  // Deep clone the fullName layout to avoid mutating the original
-  const fullNameLayout = { ...layout.fullName };
-  
-  // For Ewan, Option, Injaz, and Alnoor - Use Alnoor style when characters >= 24
+
+  // Cache ORIGINAL values once (per runtime)
+  const originalX = layout.fullName._originalX ?? layout.fullName.x;
+  const originalY = layout.fullName._originalY ?? layout.fullName.y;
+  const originalSize = layout.fullName._originalSize ?? layout.fullName.size;
+  const originalFont = layout.fullName._originalFont ?? layout.fullName.font;
+  const originalColor = layout.fullName.color ?? [0, 0, 0];
+
+  // Store them (non-enumerable is optional)
+  layout.fullName._originalX = originalX;
+  layout.fullName._originalY = originalY;
+  layout.fullName._originalSize = originalSize;
+  layout.fullName._originalFont = originalFont;
+
+  // RESET every time
+  const fullNameLayout = {
+    ...layout.fullName,
+    x: originalX,
+    y: originalY,
+    size: originalSize,
+    font: originalFont,
+    color: originalColor
+  };
+
+  // Jordan & Kuwait offices
   if (
     (country === 'jordan' && ['EWAN', 'OPTION', 'INJAZ'].includes(officeUpper)) ||
     (country === 'kuwait' && officeUpper === 'ALNOOR')
   ) {
-    if (charCount >= 24) {
-      // Apply font size reduction for long names
-      fullNameLayout.size = (fullNameLayout.size || 16.5) - 2; // Reduce font size by 2
-      
-      // FIX: For Ewan and Option, DO NOT shift left - keep original x position
-      if (country === 'jordan' && ['EWAN', 'OPTION'].includes(officeUpper)) {
-        // Keep original x position (x=64 for Ewan, x=60 for Option)
-        // No adjustment needed
-      } else {
-        // For Injaz and Alnoor, shift left by 5mm as before
-        fullNameLayout.x = fullNameLayout.x - 5; // Shift left by 5mm
-      }
-      
-      // Keep original font and color
-      fullNameLayout.font = fullNameLayout.font || 'helvetica';
-      fullNameLayout.color = fullNameLayout.color || [0, 0, 0];
+    if (charCount >= 28) {
+      fullNameLayout.size = originalSize - 3;
+      fullNameLayout.x = originalX - 5;
+    } else if (charCount >= 24) {
+      fullNameLayout.size = originalSize - 2;
+      fullNameLayout.x = originalX - 5;
     }
   }
-  // For Aldhahran - special case (19 characters threshold)
-  else if (country === 'saudi' && officeUpper === 'ALDHAHRAN') {
-    if (charCount >= 19) {
-      // Update to specific coordinates and size
-      fullNameLayout.size = 9;
-      fullNameLayout.x = 35;
-      fullNameLayout.y = 55;
-      fullNameLayout.font = 'helvetica';
-      // Preserve color if exists
-      if (!fullNameLayout.color) {
-        fullNameLayout.color = [0, 0, 0]; // Default black
-      }
-    }
+
+  // Aldhahran (absolute override)
+  if (country === 'saudi' && officeUpper === 'ALDHAHRAN' && charCount >= 19) {
+    fullNameLayout.size = 9;
+    fullNameLayout.x = 35;
+    fullNameLayout.y = 55;
+    fullNameLayout.font = 'helvetica';
   }
-  
-  // Update the layout with adjusted fullName
+
   layout.fullName = fullNameLayout;
 };
+
 
 // ==========================================
 // LAYOUT COORDINATES
@@ -296,7 +342,7 @@ const LAYOUT_SAUDI_ALDHAHRAN: FieldLayout = {
 // --- JORDAN: EWAN OFFICE ---
 const LAYOUT_JORDAN_EWAN: FieldLayout = {
   refNo: { x: 141.5, y: 76.25, font: 'helvetica' },
-  fullName: { x: 64, y: 96, font: 'helvetica', size: 18 },
+  fullName: { x: 65, y: 95, font: 'helvetica', size: 18 },
   religion: { x: 53, y: 130, font: 'helvetica' },
   dob: { x: 50, y: 136, font: 'helvetica' },
   pob: { x: 50, y: 154, font: 'helvetica' },
@@ -334,7 +380,7 @@ const LAYOUT_JORDAN_EWAN: FieldLayout = {
 // --- JORDAN: OPTION OFFICE ---
 const LAYOUT_JORDAN_OPTION: FieldLayout = {
   refNo: { x: 139, y: 68.5, font: 'helvetica' },
-  fullName: { x: 60, y: 89, font: 'helvetica', size: 16.5 },
+  fullName: { x: 70, y: 89, font: 'helvetica', size: 16.5 },
   religion: { x: 53, y: 125, font: 'helvetica' },
   dob: { x: 50, y: 132, font: 'helvetica' },
   pob: { x: 50, y: 148, font: 'helvetica' },
